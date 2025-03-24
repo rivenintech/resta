@@ -1,0 +1,42 @@
+---
+import { MenuTabs } from "@/components/menu";
+import Base from "@/layouts/Base.astro";
+import { getImage } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const menu = await getCollection("menu");
+const categories = await getCollection("menuCategories");
+const pageData = (await getCollection("menuPage"))[0];
+
+// Optimize images
+for (const item of menu) {
+    const image = await getImage({
+        src: item.data.img,
+        width: 600,
+        quality: "max",
+    });
+    item.data.img = image;
+}
+
+const categoriesWithMenu = categories
+    .map((category) => ({
+        ...category,
+        items: menu.filter(({ data }) => data.category.id === category.id).sort((a, b) => a.data.price - b.data.price),
+    }))
+    .filter((category) => category.items.length > 0)
+    .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title={pageData.data.title} description={pageData.data.description}>
+    <main class="container mx-auto mt-[88px] px-6">
+        <section class="mt-24">
+            <div class="mb-8 text-center">
+                <p class="mb-2 text-xl font-medium text-neutral-400">{pageData.data.secondary_heading}</p>
+                <h2 class="mb-4 font-mono text-6xl font-semibold">{pageData.data.heading}</h2>
+                <div class="text-neutral-400" set:html={pageData.rendered?.html} />
+            </div>
+
+            <MenuTabs menu={categoriesWithMenu} client:load />
+        </section>
+    </main>
+</Base>

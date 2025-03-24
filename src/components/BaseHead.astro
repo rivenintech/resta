@@ -1,0 +1,48 @@
+---
+import { getImage } from "astro:assets";
+import metaBg from "src/assets/images/pexels-pixabay-260922.jpg";
+
+const { title, description, image = metaBg, twitterHandle } = Astro.props;
+const currentUrl = new URL(Astro.url.pathname.replace(".html", "").replace(/\/+$/, ""), Astro.url).toString();
+const imageUrl = new URL((await getImage({ src: image })).src, Astro.url);
+
+if (!title) {
+    console.warn("Empty meta title.");
+}
+if (!description) {
+    console.warn("Empty meta description.");
+}
+if (!twitterHandle) {
+    console.warn("(optional) Add Twitter handle.");
+}
+---
+
+<meta name="description" content={description} />
+
+<!-- https://developer.x.com/en/docs/twitter-for-websites/cards/overview/markup -->
+<meta name="twitter:card" content="summary_large_image" />
+{twitterHandle && <meta name="twitter:creator" content={"@" + twitterHandle} />}
+
+<!--  -->
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- OpenGraph - Facebook, LinkedIn, etc. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={currentUrl} />
+
+<link rel="canonical" href={currentUrl} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+
+<title>{title}</title>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>

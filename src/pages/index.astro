@@ -1,0 +1,115 @@
+---
+import divider from "@/assets/Elegant-Flourish-Frame-Extrapolated-19.svg";
+import { Testimonials } from "@/components/testimonials";
+import Base from "@/layouts/Base.astro";
+import { fetchReviews } from "@/utils/fetchReviews";
+import { currency } from "@/utils/formatters";
+import { Image, getImage } from "astro:assets";
+import { getCollection, getEntries } from "astro:content";
+
+const pageData = {
+    hero: (await getCollection("indexHero"))[0],
+    about: (await getCollection("indexAbout"))[0],
+    recommendations: (await getCollection("indexRecommendations"))[0],
+    reviews: (await getCollection("indexReviews"))[0],
+    meta: (await getCollection("indexMeta"))[0],
+};
+
+const heroImg = await getImage({ src: pageData.hero.data.img, width: 1920, quality: "max" });
+const selectedDishes = await getEntries(pageData.recommendations.data.selected_dishes);
+const reviews = await fetchReviews();
+---
+
+<Base title={pageData.meta.data.title} description={pageData.meta.data.description}>
+    <main>
+        <section class="h-screen">
+            <div class="h-full w-full bg-cover" style={`background-image: url(${heroImg.src});`}>
+                <div class="flex h-full w-full items-center backdrop-brightness-50">
+                    <div class="container mx-auto px-6">
+                        <div class="lg:w-1/2">
+                            <h1 class="font-mono text-6xl font-medium">
+                                {pageData.hero.data.title}
+                            </h1>
+                            <div class="mt-3 mb-6" set:html={pageData.hero.rendered?.html} />
+                            <a
+                                href="/menu"
+                                class="mt-4 rounded-full border-2 border-yellow-500 bg-yellow-500 px-8 py-2.5 font-medium text-black duration-300 hover:bg-neutral-950 hover:text-white"
+                                >View Menu</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mx-auto mt-24 flex max-w-6xl flex-col px-6">
+            <div class="text-center">
+                <p class="mb-2 text-xl font-medium text-neutral-400">
+                    {pageData.about.data.secondary_title}
+                </p>
+                <h2 id="about" class="mb-14 font-mono text-6xl font-semibold">
+                    {pageData.about.data.title}
+                </h2>
+            </div>
+
+            <Image src={divider} alt="text divider" width="300" class="self-center" />
+
+            <div class="mx-auto my-2 max-w-4xl space-y-3 text-justify text-lg" set:html={pageData.about.rendered?.html} />
+
+            <Image src={divider} alt="text divider" width="300" class="self-center" style="transform: scaleY(-1);" />
+        </section>
+
+        <section class="container mx-auto mt-24 flex max-w-6xl flex-col px-6">
+            <p class="mb-2 text-center text-xl font-medium text-neutral-400">
+                {pageData.recommendations.data.secondary_title}
+            </p>
+            <h2 class="mb-14 text-center font-mono text-6xl font-semibold">
+                {pageData.recommendations.data.title}
+            </h2>
+
+            <div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+                {
+                    selectedDishes.map((item) => (
+                        <div class="flex flex-col gap-6 lg:flex-row">
+                            <Image
+                                src={item.data.img}
+                                widths={[300, 600]}
+                                sizes={`(max-width: 400px) 300px, 600px`}
+                                alt={item.data.title}
+                                class="aspect-square max-w-40 border-2 border-white object-cover"
+                            />
+                            <div class="w-full">
+                                <div class="mb-1 flex justify-between gap-6">
+                                    <p class="text-xl font-medium uppercase">{item.data.title}</p>
+                                    <p class="font-semibold text-neutral-300">{currency.format(item.data.price)}</p>
+                                </div>
+                                <p class="text-neutral-400">{item.data.description}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <a
+                href="/menu"
+                class="mx-auto mt-8 inline-block border-2 border-yellow-500 bg-yellow-500 px-8 py-3 text-center text-black duration-300 hover:bg-transparent hover:text-white"
+                >View the entire menu</a
+            >
+        </section>
+
+        <section class="container mx-auto mt-24 flex max-w-6xl flex-col px-6">
+            <div class="text-center">
+                <p class="mb-2 text-xl font-medium text-neutral-400">{pageData.reviews.data.secondary_title}</p>
+                <h2 class="mb-14 font-mono text-6xl font-semibold">{pageData.reviews.data.title}</h2>
+            </div>
+
+            <Testimonials reviews={reviews} client:visible />
+
+            <a
+                href="/reviews"
+                class="mx-auto mt-8 inline-block border-2 border-yellow-500 bg-yellow-500 px-8 py-3 text-center text-black duration-300 hover:bg-transparent hover:text-white"
+                >View all reviews</a
+            >
+        </section>
+    </main>
+</Base>

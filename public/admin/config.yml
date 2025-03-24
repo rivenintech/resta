@@ -1,0 +1,200 @@
+local_backend: true # Allow to edit files locally
+logo_url: "/favicon.svg"
+
+backend:
+    name: github
+    repo: rivenintech/resta
+    branch: master
+    base_url: https://sveltia-cms-auth.riven7897.workers.dev
+
+media_folder: src/assets/images
+collections:
+    - name: "menu"
+      label: "Menu"
+      icon: "dinner_dining"
+      folder: "src/content/menu"
+      create: true
+      media_folder: "/src/assets/images/menu"
+      slug: "{{uuid_short}}"
+      fields:
+          - { label: "Name", name: "title", widget: "string" }
+          - { label: "Price", name: "price", widget: "number", min: 0, value_type: "float" }
+          - {
+                label: "Menu categories",
+                label_singular: "Menu category",
+                name: "category",
+                widget: "relation",
+                collection: "categories",
+                search_fields: ["title"],
+                value_field: "slug",
+                display_fields: ["title"],
+            }
+          - { label: "Image", name: "img", widget: "image", choose_url: false }
+          - { label: "Description", name: "description", widget: "text" }
+      view_groups:
+          - label: "Categories"
+            field: category
+    - name: "categories"
+      label: "Menu Categories"
+      icon: "menu_book"
+      folder: "src/content/categories"
+      create: true
+      slug: "{{uuid_short}}"
+      sortable_fields: ["order"]
+      summary: "{{order}}. {{title}}"
+      fields:
+          - { label: "Name", name: "title", widget: "string" }
+          - { label: "Order on the menu", name: "order", widget: "number", min: 1, value_type: "int" }
+    - name: "main_page"
+      label: "Homepage (index)"
+      icon: "home"
+      files:
+          - label: "Page title & meta description"
+            name: "page_title"
+            file: "src/content/pages/index/title_description.md"
+            fields:
+                - { label: "Page Title", name: "title", widget: "string", hint: "Example: https://www.w3schools.com/html/pagetitle.jpg" }
+                - { label: "Meta Description", name: "description", widget: "text", maxlength: 160 }
+          - label: "Hero section"
+            name: "hero"
+            file: "src/content/pages/index/hero.md"
+            fields:
+                - { label: "Title", name: "title", widget: "string" }
+                - { label: "Text", name: "body", widget: "markdown" }
+                - { label: "Image", name: "img", widget: "image", choose_url: false }
+          - label: "About us"
+            name: "about"
+            file: "src/content/pages/index/about.md"
+            fields:
+                - { label: "Title", name: "title", widget: "string", hint: "The bigger one." }
+                - { label: "Secondary title", name: "secondary_title", widget: "string" }
+                - { label: "Text", name: "body", widget: "markdown", hint: "Text under this title." }
+          - label: "Recommendations section"
+            name: "recommendations"
+            file: "src/content/pages/index/recommendations.md"
+            fields:
+                - { label: "Title", name: "title", widget: "string", hint: "The bigger one." }
+                - { label: "Secondary title", name: "secondary_title", widget: "string" }
+                - {
+                      label: "Selected dishes",
+                      name: "selected_dishes",
+                      widget: "relation",
+                      collection: "menu",
+                      search_fields: ["title"],
+                      value_field: "slug",
+                      display_fields: ["title"],
+                      multiple: true,
+                      max: 4,
+                      min: 2,
+                  }
+          - label: "Reviews section"
+            name: "reviews"
+            file: "src/content/pages/index/reviews.md"
+            fields:
+                - { label: "Title", name: "title", widget: "string", hint: "The bigger one." }
+                - { label: "Secondary title", name: "secondary_title", widget: "string" }
+                - { label: "Text", name: "body", widget: "markdown", hint: "Text under the title show on /reviews page." }
+    - name: "other_pages"
+      label: "Other Pages"
+      icon: "select_window_2"
+      files:
+          - label: "Privacy Policy (/privacy-policy)"
+            name: "privacy_policy"
+            file: "src/content/pages/privacy_policy.md"
+            fields:
+                - { label: "Page Title", name: "title", widget: "string", hint: "Example: https://www.w3schools.com/html/pagetitle.jpg" }
+                - { label: "Meta Description", name: "description", widget: "text", maxlength: 160 }
+                - { label: "Last updated", name: "last_updated", widget: "datetime", time_format: false, default: "{{now}}" }
+                - { label: "Text", name: "body", widget: "markdown" }
+          - label: "Reviews Page (/reviews)"
+            name: "reviews"
+            file: "src/content/pages/reviews.md"
+            fields:
+                - { label: "Page Title", name: "title", widget: "string", hint: "Example: https://www.w3schools.com/html/pagetitle.jpg" }
+                - { label: "Meta Description", name: "description", widget: "text", maxlength: 160 }
+                - { label: "Secondary heading", name: "secondary_heading", widget: "string" }
+                - { label: "Heading", name: "heading", widget: "string", hint: "The bigger one." }
+                - { label: "Text", name: "body", widget: "markdown", hint: "Text under the headings.", required: false }
+          - label: "Menu Page (/menu)"
+            name: "menu"
+            file: "src/content/pages/menu.md"
+            fields:
+                - { label: "Page Title", name: "title", widget: "string", hint: "Example: https://www.w3schools.com/html/pagetitle.jpg" }
+                - { label: "Meta Description", name: "description", widget: "text", maxlength: 160 }
+                - { label: "Secondary heading", name: "secondary_heading", widget: "string" }
+                - { label: "Heading", name: "heading", widget: "string", hint: "The bigger one." }
+                - { label: "Text", name: "body", widget: "markdown", hint: "Text under the headings.", required: false }
+    - name: "footer"
+      label: "Footer"
+      media_folder: "/src/assets/social_icons"
+      icon: "page_footer"
+      files:
+          - label: "Location / Contact / Opening Hours"
+            name: "footer"
+            file: "src/content/footer.md"
+            fields:
+                - label: "Image"
+                  name: "img"
+                  widget: "image"
+                  choose_url: false
+                - label: "Title"
+                  name: "title"
+                  widget: "string"
+                  hint: "Displays above the location."
+                - label: "Location"
+                  name: "body"
+                  widget: "markdown"
+                - label: "Contact Details"
+                  name: "contact"
+                  widget: "object"
+                  fields:
+                      - label: "Title"
+                        name: "title"
+                        widget: "string"
+                        hint: "Displays above the phone numbers."
+                      - label: "Phone Number"
+                        name: "phone"
+                        widget: "string"
+                      - label: "Email"
+                        name: "email"
+                        widget: "string"
+                      - label: "Social Media Links"
+                        name: "socials"
+                        widget: "list"
+                        fields:
+                            - { label: "Icon", name: "icon", widget: "image" }
+                            - { label: "URL", name: "url", widget: string }
+                            - { label: "Title", name: "title", widget: "string" }
+                - label: "Opening Hours Details"
+                  name: "opening_hours"
+                  widget: "object"
+                  fields:
+                      - label: "Title"
+                        name: "title"
+                        widget: "string"
+                        hint: "Displays above the opening hours."
+                      - label: "Opening Hours"
+                        name: "opening_hours"
+                        widget: "object"
+                        fields:
+                            - label: "Monday"
+                              name: "monday"
+                              widget: "string"
+                            - label: "Tuesday"
+                              name: "tuesday"
+                              widget: "string"
+                            - label: "Wednesday"
+                              name: "wednesday"
+                              widget: "string"
+                            - label: "Thursday"
+                              name: "thursday"
+                              widget: "string"
+                            - label: "Friday"
+                              name: "friday"
+                              widget: "string"
+                            - label: "Saturday"
+                              name: "saturday"
+                              widget: "string"
+                            - label: "Sunday"
+                              name: "sunday"
+                              widget: "string"

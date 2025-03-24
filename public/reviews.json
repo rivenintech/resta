@@ -1,0 +1,233 @@
+[
+    {
+        "id": 1001,
+        "author": "John Doe",
+        "text": "Amazing food and great service! Will be back.",
+        "rating": 5,
+        "datetime": "2022-10-29T03:19:29Z"
+    },
+    {
+        "id": 1002,
+        "author": "Jane Smith",
+        "text": "The pasta was overcooked, but the ambiance was nice.",
+        "rating": 3,
+        "datetime": "2022-05-16T06:53:04Z"
+    },
+    {
+        "id": 1003,
+        "author": "Mike Johnson",
+        "text": "Best burger in town! Highly recommend.",
+        "rating": 5,
+        "datetime": "2023-11-28T03:39:13Z"
+    },
+    {
+        "id": 1004,
+        "author": "Emily Davis",
+        "text": "Service was slow, but the food made up for it.",
+        "rating": 4,
+        "datetime": "2024-05-04T04:57:07Z"
+    },
+    {
+        "id": 1005,
+        "author": "Robert Wilson",
+        "text": "Food was cold and tasteless. Very disappointed.",
+        "rating": 1,
+        "datetime": "2024-11-10T20:49:18Z"
+    },
+    {
+        "id": 1006,
+        "author": "Sarah Brown",
+        "text": "Fantastic experience! The steak was cooked to perfection.",
+        "rating": 5,
+        "datetime": "2023-10-10T11:29:31Z"
+    },
+    {
+        "id": 1007,
+        "author": "Chris Martinez",
+        "text": "Decent food, but nothing special.",
+        "rating": 3,
+        "datetime": "2022-02-03T01:39:26Z"
+    },
+    {
+        "id": 1008,
+        "author": "Laura White",
+        "text": "Incredible flavors and friendly staff!",
+        "rating": 5,
+        "datetime": "2022-03-06T03:49:49Z"
+    },
+    {
+        "id": 1009,
+        "author": "Daniel Harris",
+        "text": "Too expensive for what you get.",
+        "rating": 2,
+        "datetime": "2023-09-19T01:46:56Z"
+    },
+    {
+        "id": 1010,
+        "author": "Olivia Thomas",
+        "text": "Loved the desserts! The cheesecake was amazing.",
+        "rating": 5,
+        "datetime": "2023-10-08T19:31:42Z"
+    },
+    {
+        "id": 1011,
+        "author": "Kevin Clark",
+        "text": "Portions were small and service was rude.",
+        "rating": 2,
+        "datetime": "2022-03-07T20:58:22Z"
+    },
+    {
+        "id": 1012,
+        "author": "Sophia Lewis",
+        "text": "Great atmosphere and delicious cocktails.",
+        "rating": 4,
+        "datetime": "2023-10-30T02:36:24Z"
+    },
+    {
+        "id": 1013,
+        "author": "Matthew Walker",
+        "text": "Wouldn’t go again. Overpriced and bland.",
+        "rating": 2,
+        "datetime": "2024-09-23T11:04:16Z"
+    },
+    {
+        "id": 1014,
+        "author": "Isabella Hall",
+        "text": "Everything was perfect. Highly recommended!",
+        "rating": 5,
+        "datetime": "2023-08-14T13:56:49Z"
+    },
+    {
+        "id": 1015,
+        "author": "James Allen",
+        "text": "The seafood was fresh and tasty.",
+        "rating": 4,
+        "datetime": "2024-07-20T02:22:38Z"
+    },
+    {
+        "id": 1016,
+        "author": "Ava Young",
+        "text": "Waited an hour for food. Not worth it.",
+        "rating": 1,
+        "datetime": "2022-05-17T16:26:32Z"
+    },
+    {
+        "id": 1017,
+        "author": "Benjamin King",
+        "text": "Best sushi I’ve had in a long time.",
+        "rating": 5,
+        "datetime": "2024-03-08T02:20:48Z"
+    },
+    {
+        "id": 1018,
+        "author": "Mia Wright",
+        "text": "Friendly service but the food was just okay.",
+        "rating": 3,
+        "datetime": "2022-05-23T11:37:41Z"
+    },
+    {
+        "id": 1019,
+        "author": "David Scott",
+        "text": "Loved everything about this place!",
+        "rating": 5,
+        "datetime": "2021-08-13T03:15:49Z"
+    },
+    {
+        "id": 1020,
+        "author": "Charlotte Green",
+        "text": "Food was underseasoned, but the view was nice.",
+        "rating": 3,
+        "datetime": "2022-09-04T00:55:03Z"
+    },
+    {
+        "id": 1021,
+        "author": "Ethan Adams",
+        "text": "Disappointed with the quality. Expected more.",
+        "rating": 2,
+        "datetime": "2022-08-15T03:12:38Z"
+    },
+    {
+        "id": 1022,
+        "author": "Amelia Baker",
+        "text": "Amazing experience! Will definitely return.",
+        "rating": 5,
+        "datetime": "2024-04-04T15:22:10Z"
+    },
+    {
+        "id": 1023,
+        "author": "Liam Nelson",
+        "text": "Perfect date night spot. Loved the ambiance!",
+        "rating": 5,
+        "datetime": "2021-09-22T03:19:08Z"
+    },
+    {
+        "id": 1024,
+        "author": "Grace Rodriguez",
+        "text": "Mediocre food but excellent service.",
+        "rating": 3,
+        "datetime": "2023-05-16T15:21:48Z"
+    },
+    {
+        "id": 1025,
+        "author": "Henry Perez",
+        "text": "Terrible service. The waiter forgot our order.",
+        "rating": 1,
+        "datetime": "2022-04-07T09:31:08Z"
+    },
+    {
+        "id": 1026,
+        "author": "Lucas Turner",
+        "text": "Absolutely delicious! Everything was spot on.",
+        "rating": 5,
+        "datetime": "2021-11-05T17:23:38Z"
+    },
+    {
+        "id": 1027,
+        "author": "Zoe Phillips",
+        "text": "Not bad, but I’ve had better elsewhere.",
+        "rating": 3,
+        "datetime": "2021-07-16T20:37:20Z"
+    },
+    {
+        "id": 1028,
+        "author": "Elijah Hernandez",
+        "text": "The ribs were out of this world!",
+        "rating": 5,
+        "datetime": "2023-11-22T05:21:08Z"
+    },
+    {
+        "id": 1029,
+        "author": "Natalie Campbell",
+        "text": "Overpriced drinks and average food.",
+        "rating": 2,
+        "datetime": "2023-08-03T17:23:45Z"
+    },
+    {
+        "id": 1030,
+        "author": "Liam Roberts",
+        "text": "Had dinner here just last night, and it was fantastic!",
+        "rating": 5,
+        "datetime": "2025-02-28T19:42:15Z"
+    },
+    {
+        "id": 1031,
+        "author": "Sophia Garcia",
+        "text": "Tried the new seasonal menu last week. Loved it!",
+        "rating": 4,
+        "datetime": "2025-02-23T14:10:32Z"
+    },
+    {
+        "id": 1032,
+        "author": "Ethan Ramirez",
+        "text": "The pasta was great, but service was a bit slow.",
+        "rating": 3,
+        "datetime": "2025-02-10T21:08:49Z"
+    },
+    {
+        "id": 1033,
+        "author": "Emma Wilson",
+        "text": "Visited about two months ago. Still thinking about the steak!",
+        "rating": 5,
+        "datetime": "2025-01-05T18:25:37Z"
+    }
+]

@@ -1,0 +1,179 @@
+---
+const pages = [
+    { name: "Home", url: "/" },
+    { name: "About Us", url: "/#about" },
+    { name: "Reviews", url: "/reviews" },
+    { name: "Contact", url: "/#contact" },
+    { name: "Menu", url: "/menu" },
+];
+
+// Current path, starting delay, and delay increase for mobile menu items
+const startingDelay = 175;
+const increaseDelayBy = 50;
+---
+
+<header class="fixed top-0 z-10 w-full duration-200">
+    <nav class="container mx-auto hidden items-center justify-between py-6 md:flex">
+        <a href="/" class="font-mono text-3xl font-bold">Resta</a>
+
+        <ul class="flex gap-8 uppercase">
+            {
+                pages.slice(0, -1).map((page) => (
+                    <li>
+                        <a href={page.url}>{page.name}</a>
+                    </li>
+                ))
+            }
+        </ul>
+
+        <a
+            href={pages[pages.length - 1].url}
+            class="rounded-full border-2 border-yellow-500 bg-yellow-500 px-8 py-1.5 font-medium text-black duration-300 hover:bg-transparent hover:text-white"
+            >{pages[pages.length - 1].name}</a
+        >
+    </nav>
+
+    <!-- Mobile navbar -->
+    <nav class="w-full md:hidden">
+        <div class="flex touch-none items-center justify-between py-6">
+            <div class="grow basis-0"></div>
+            <a href="/" class="z-50 font-mono text-3xl font-bold">Resta</a>
+            <div class="z-50 grow basis-0">
+                <button id="burger" class="mr-5 ml-auto block pt-5 focus:outline-hidden" aria-label="Menu" aria-expanded="false">
+                    <span class="burger block h-1 w-7 bg-white duration-[275ms]"></span>
+                </button>
+            </div>
+        </div>
+        <div
+            class="group invisible fixed inset-0 touch-none bg-yellow-500 text-center opacity-0 transition-all duration-[375ms] data-[open='true']:visible data-[open='true']:opacity-100"
+            id="mobile-menu"
+            data-open="false"
+        >
+            <ul class="inline-flex h-full flex-col items-end justify-center" style="transform: translateX(-18%) skew(-16deg);">
+                {
+                    pages.map((site, i) => {
+                        const delay = startingDelay + i * increaseDelayBy;
+                        return (
+                            <li class="my-2 block skew-x-[16deg] text-right">
+                                <a
+                                    class="block -translate-y-[10px] py-3 text-2xl font-bold opacity-0 group-data-[open='true']:translate-y-0 group-data-[open='true']:opacity-100"
+                                    href={site.url}
+                                    style={`transition: all 275ms ${delay}ms;`}
+                                >
+                                    {site.name}
+                                </a>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile navbar styles -->
+<style>
+    #mobile-menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: -15px;
+        background: #0a0a0a;
+        transform-origin: 0 0;
+        transform: skew(-14deg) translateX(-120%);
+        transition: all 0.275s 0.1s;
+    }
+
+    #mobile-menu[data-open="true"]::before {
+        transform: skew(-14deg) translateX(0);
+    }
+
+    /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
+    .burger:after,
+    .burger:before {
+        content: "";
+        display: block;
+        height: 100%;
+        background: white;
+        transition: all 0.275s;
+    }
+
+    .burger:after {
+        transform: translateY(-12px) translateX(-2px) skew(-20deg);
+    }
+
+    .burger:before {
+        transform: translateY(-16px) skew(-10deg);
+    }
+
+    [aria-expanded="true"] .burger {
+        transform: skew(5deg) translateY(-8px) rotate(-45deg);
+    }
+
+    [aria-expanded="true"] .burger:before {
+        transform: translateY(0px) skew(-10deg) rotate(75deg);
+    }
+
+    [aria-expanded="true"] .burger:after {
+        transform: translateY(-12px) translateX(10px) skew(-20deg);
+        opacity: 0;
+    }
+</style>
+
+<script>
+    function initializeNavbar() {
+        // Mobile navbar
+        const burger = document.getElementById("burger"),
+            nav = document.getElementById("mobile-menu");
+
+        if (!burger || !nav) return;
+
+        burger.addEventListener("click", () => {
+            const isOpen = nav.dataset.open === "true" ? "false" : "true";
+            burger.ariaExpanded = isOpen;
+            nav.dataset.open = isOpen;
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                burger.ariaExpanded = "false";
+                nav.dataset.open = "false";
+            });
+        });
+
+        // Used for desktop navbar
+        const moveNavbar = () => {
+            const navbar = document.getElementById("desktop-nav");
+
+            if (!navbar) return;
+
+            if (window.scrollY > window.innerHeight - navbar.offsetHeight) {
+                navbar.classList.remove("absolute", "bottom-0");
+                navbar.classList.add("fixed", "top-0");
+            } else {
+                navbar.classList.remove("fixed", "top-0");
+                navbar.classList.add("absolute", "bottom-0");
+            }
+        };
+
+        window.addEventListener("scroll", moveNavbar);
+        moveNavbar();
+    }
+
+    initializeNavbar();
+</script>
+
+<script>
+    function addScrollEvent() {
+        const header = document.querySelector("header");
+        if (!header) return;
+        header.classList.toggle("bg-neutral-950", window.scrollY > 40);
+
+        window.addEventListener("scroll", () => {
+            header.classList.toggle("bg-neutral-950", window.scrollY > 40);
+        });
+    }
+    addScrollEvent();
+</script>
