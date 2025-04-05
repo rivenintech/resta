@@ -12,8 +12,10 @@ const pageData = (await getCollection("menuPage"))[0];
 for (const item of menu) {
     const image = await getImage({
         src: item.data.img,
-        width: 600,
+        width: 300,
+        height: 300,
         quality: "max",
+        fit: "cover",
     });
     item.data.img = image;
 }

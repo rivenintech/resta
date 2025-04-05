@@ -4,7 +4,7 @@ import { Testimonials } from "@/components/testimonials";
 import Base from "@/layouts/Base.astro";
 import { fetchReviews } from "@/utils/fetchReviews";
 import { currency } from "@/utils/formatters";
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import { getCollection, getEntries } from "astro:content";
 
 const pageData = {
@@ -15,28 +15,33 @@ const pageData = {
     meta: (await getCollection("indexMeta"))[0],
 };
 
-const heroImg = await getImage({ src: pageData.hero.data.img, width: 1920, quality: "max" });
 const selectedDishes = await getEntries(pageData.recommendations.data.selected_dishes);
-const reviews = await fetchReviews();
+const reviews = await fetchReviews(15);
 ---
 
 <Base title={pageData.meta.data.title} description={pageData.meta.data.description}>
     <main>
-        <section class="h-screen">
-            <div class="h-full w-full bg-cover" style={`background-image: url(${heroImg.src});`}>
-                <div class="flex h-full w-full items-center backdrop-brightness-50">
-                    <div class="container mx-auto px-6">
-                        <div class="lg:w-1/2">
-                            <h1 class="font-mono text-6xl font-medium">
-                                {pageData.hero.data.title}
-                            </h1>
-                            <div class="mt-3 mb-6" set:html={pageData.hero.rendered?.html} />
-                            <a
-                                href="/menu"
-                                class="mt-4 rounded-full border-2 border-yellow-500 bg-yellow-500 px-8 py-2.5 font-medium text-black duration-300 hover:bg-neutral-950 hover:text-white"
-                                >View Menu</a
-                            >
-                        </div>
+        <section class="relative h-screen">
+            <Image
+                src={pageData.hero.data.img}
+                widths={[641, 1000, 1280, 1440, 1920, 2200]}
+                sizes=`(max-width: 768px) 641px, (max-width: 1000px) 1000px, (max-width: 1280px) 1280px, (max-width: 1440px) 1440px, (max-width: 1920px) 1920px, 2200px`
+                alt="hero background"
+                quality="max"
+                class="absolute -z-10 h-full w-full object-cover"
+            />
+            <div class="relative z-10 flex h-full w-full items-center backdrop-brightness-50">
+                <div class="container mx-auto px-6">
+                    <div class="lg:w-1/2">
+                        <h1 class="font-mono text-6xl font-medium">
+                            {pageData.hero.data.title}
+                        </h1>
+                        <div class="mt-3 mb-6" set:html={pageData.hero.rendered?.html} />
+                        <a
+                            href="/menu"
+                            class="mt-4 rounded-full border-2 border-yellow-500 bg-yellow-500 px-8 py-2.5 font-medium text-black duration-300 hover:bg-neutral-950 hover:text-white"
+                            >View Menu</a
+                        >
                     </div>
                 </div>
             </div>
@@ -73,8 +78,10 @@ const reviews = await fetchReviews();
                         <div class="flex flex-col gap-6 lg:flex-row">
                             <Image
                                 src={item.data.img}
-                                widths={[300, 600]}
-                                sizes={`(max-width: 400px) 300px, 600px`}
+                                width="300"
+                                height="300"
+                                fit="cover"
+                                quality="max"
                                 alt={item.data.title}
                                 class="aspect-square max-w-40 border-2 border-white object-cover"
                             />
