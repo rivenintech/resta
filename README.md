@@ -10,7 +10,7 @@
 <h3 align="center">Resta - restaurant's website</h3>
 
   <p align="center">
-    A restaurant's responsive, fast and modern website, designed to showcase the restaurant's menu, reviews and information with CMS for easy, no-code content managment.
+    A restaurant's responsive, fast and modern website, designed to showcase the restaurant's menu, reviews, and information with CMS for easy, no-code content management.
     <br />
     <a href="https://resta.rivenintech.com"><strong>View Live Site »</strong></a>
   </p>
@@ -55,7 +55,7 @@
 
 ### CMS Panel Video Showcase
 
-It is impossible to allow view access to CMS panel to anyone on the live website as it is based on the repository access permissions, so instead here is a short video showcase of the /admin page.
+It is impossible to allow view access to the CMS panel to anyone on the live website as it is based on the repository access permissions, so instead here is a short video showcase of the /admin page.
 
 [![Watch the video][yt-cms-video-thumbnail]][yt-cms-video-url]
 
