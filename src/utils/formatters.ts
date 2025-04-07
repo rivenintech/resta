@@ -23,3 +23,16 @@ export const getTimeAgo = (dateString: string) => {
     }
     return tf.format(date);
 };
+
+export const getWeekdayIndex = (weekday: string) => {
+    const weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    // Find index of given weekday
+    const dayIndex = weekdays.indexOf(weekday);
+
+    if (dayIndex === -1) {
+        throw new Error("Invalid weekday name");
+    }
+
+    return dayIndex;
+};

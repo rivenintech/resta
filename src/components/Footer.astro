@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { getWeekdayIndex } from "@/utils/formatters";
 
 const footerData = (await getCollection("footerData"))[0];
 ---
@@ -96,34 +97,14 @@ const footerData = (await getCollection("footerData"))[0];
                                 </div>
                                 <p class="text-2xl font-semibold">{footerData.data.opening_hours.title}</p>
                                 <table id="opening-hours">
-                                    <tr data-day="1">
-                                        <td>monday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.monday}</td>
-                                    </tr>
-                                    <tr data-day="2">
-                                        <td>tuesday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.tuesday}</td>
-                                    </tr>
-                                    <tr data-day="3">
-                                        <td>wednesday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.wednesday}</td>
-                                    </tr>
-                                    <tr data-day="4">
-                                        <td>thursday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.thursday}</td>
-                                    </tr>
-                                    <tr data-day="5">
-                                        <td>friday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.friday}</td>
-                                    </tr>
-                                    <tr data-day="6">
-                                        <td>saturday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.saturday}</td>
-                                    </tr>
-                                    <tr data-day="0">
-                                        <td>sunday</td>
-                                        <td>{footerData.data.opening_hours.opening_hours.sunday}</td>
-                                    </tr>
+                                    {
+                                        Object.entries(footerData.data.opening_hours.opening_hours).map(([day, time]) => (
+                                            <tr data-day={getWeekdayIndex(day)}>
+                                                <td>{day}</td>
+                                                <td>{time}</td>
+                                            </tr>
+                                        ))
+                                    }
                                 </table>
                             </div>
                         </div>
