@@ -84,7 +84,7 @@ It is impossible to allow view access to the CMS panel to anyone on the live web
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [shadcn/ui]: https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=
-[shadcn/ui-url]: https://pages.cloudflare.com/
+[shadcn/ui-url]: https://ui.shadcn.com/
 [cf-pages]: https://img.shields.io/badge/Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflarepages&logoColor=white
 [cf-pages-url]: https://pages.cloudflare.com/
 [sveltia-cms]: https://img.shields.io/badge/Sveltia%20CMS-F85605?style=for-the-badge
