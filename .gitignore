@@ -23,6 +23,5 @@ pnpm-debug.log*
 # VSCode config
 .vscode
 
-.jampack
 .unlighthouse
 .wrangler
