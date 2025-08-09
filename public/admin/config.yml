@@ -1,4 +1,3 @@
-local_backend: true # Allow to edit files locally
 logo_url: "/favicon.svg"
 
 backend:
