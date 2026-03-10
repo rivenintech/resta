@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, reference, z } from "astro:content";
+import { z } from "astro/zod";
+import { defineCollection, reference } from "astro:content";
 
 const menu = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/menu" }),
