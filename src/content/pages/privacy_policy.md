@@ -24,4 +24,4 @@ By using this website, you acknowledge that it is purely a demonstration of my w
 
 ## 4. Contact
 
-If you have any questions or would like to learn more, please visit my [main website](https://rivenintech.com).
+If you have any questions or would like to learn more, please visit my [main website](https://rivn.dev).

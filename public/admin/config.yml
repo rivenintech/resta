@@ -2,7 +2,7 @@ logo_url: "/favicon.svg"
 
 backend:
     name: github
-    repo: rivenintech/resta
+    repo: rivndev/resta
     branch: master
     base_url: https://sveltia-cms-auth.riven7897.workers.dev
 

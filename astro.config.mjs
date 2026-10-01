@@ -8,13 +8,13 @@ import robotsTxt from "astro-robots-txt";
 // https://astro.build/config
 export default defineConfig({
     // Add your final site URL here (used for sitemap and canonical URLs)
-    site: "https://resta.rivenintech.com",
+    site: "https://resta.rivn.dev",
     trailingSlash: "never",
     vite: { plugins: [tailwindcss()] },
     integrations: [
         react(),
         sitemap({
-            filter: (page) => page !== "https://resta.rivenintech.com/admin",
+            filter: (page) => page !== "https://resta.rivn.dev/admin",
         }),
         robotsTxt(),
     ],
